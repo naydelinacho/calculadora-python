@@ -109,5 +109,4 @@ Elige una opción: 13
 ```
 
 ## Autor
-
-TU NOMBRE COMPLETO
+NAYDELIN JHANEYDI ACHO MAMANI
