@@ -24,11 +24,23 @@ def mostrar_menu():
     print("10. Factorial")
     print("11. Promedio")
     print("12. Redondeo")
+    print("13. Ver historial")
+    print("14. Limpiar historial")
     print(" 0. Salir")
     print("=================================")
 
 
+def mostrar_historial(historial):
+    if len(historial) == 0:
+        print("El historial está vacío.")
+        return
+    print("\n--- Historial de operaciones ---")
+    for i, registro in enumerate(historial, start=1):
+        print(f"{i}. {registro}")
+
+
 def main():
+    historial = []
     print("Bienvenido a la calculadora")
     while True:
         mostrar_menu()
@@ -38,44 +50,63 @@ def main():
             print("¡Hasta luego!")
             break
 
+        if opcion == "13":
+            mostrar_historial(historial)
+            continue
+
+        if opcion == "14":
+            historial.clear()
+            print("Historial borrado.")
+            continue
+
         try:
             if opcion == "1":
                 a = leer_numero("Primer número: ")
                 b = leer_numero("Segundo número: ")
                 resultado = op.sumar(a, b)
+                descripcion = f"{a} + {b}"
             elif opcion == "2":
                 a = leer_numero("Primer número: ")
                 b = leer_numero("Segundo número: ")
                 resultado = op.restar(a, b)
+                descripcion = f"{a} - {b}"
             elif opcion == "3":
                 a = leer_numero("Primer número: ")
                 b = leer_numero("Segundo número: ")
                 resultado = op.multiplicar(a, b)
+                descripcion = f"{a} * {b}"
             elif opcion == "4":
                 a = leer_numero("Dividendo: ")
                 b = leer_numero("Divisor: ")
                 resultado = op.dividir(a, b)
+                descripcion = f"{a} / {b}"
             elif opcion == "5":
                 base = leer_numero("Base: ")
                 exponente = leer_numero("Exponente: ")
                 resultado = op.potencia(base, exponente)
+                descripcion = f"{base} ^ {exponente}"
             elif opcion == "6":
                 a = leer_numero("Dividendo: ")
                 b = leer_numero("Divisor: ")
                 resultado = op.modulo(a, b)
+                descripcion = f"{a} mod {b}"
             elif opcion == "7":
                 n = leer_numero("Número: ")
                 resultado = op.raiz_cuadrada(n)
+                descripcion = f"raíz cuadrada de {n}"
             elif opcion == "8":
                 porc = leer_numero("Porcentaje (por ejemplo 15): ")
                 cantidad = leer_numero("Cantidad: ")
                 resultado = op.porcentaje(porc, cantidad)
+                descripcion = f"{porc}% de {cantidad}"
             elif opcion == "9":
                 n = leer_numero("Número: ")
                 resultado = op.valor_absoluto(n)
+                descripcion = f"valor absoluto de {n}"
             elif opcion == "10":
                 n = leer_numero("Número entero (0 o mayor): ")
                 resultado = op.factorial(n)
+                descripcion = f"factorial de {n}"
             elif opcion == "11":
                 cantidad = leer_numero("¿Cuántos números vas a ingresar? ")
                 if cantidad < 1 or cantidad != int(cantidad):
@@ -84,15 +115,18 @@ def main():
                 for i in range(int(cantidad)):
                     numeros.append(leer_numero(f"Número {i + 1}: "))
                 resultado = op.promedio(numeros)
+                descripcion = f"promedio de {numeros}"
             elif opcion == "12":
                 n = leer_numero("Número a redondear: ")
                 decimales = leer_numero("Cantidad de decimales: ")
                 resultado = op.redondear(n, decimales)
+                descripcion = f"redondeo de {n} a {int(decimales)} decimales"
             else:
                 print("Opción inválida. Elige una opción del menú.")
                 continue
 
             print(f"Resultado: {resultado}")
+            historial.append(f"{descripcion} = {resultado}")
         except ValueError as error:
             print(f"Error: {error}")
 
