@@ -29,3 +29,17 @@ def modulo(a, b):
     if b == 0:
         raise ValueError("El divisor del módulo no puede ser cero.")
     return a % b   
+    
+
+def raiz_cuadrada(n):
+    if n < 0:
+        raise ValueError("No existe la raíz cuadrada de un número negativo.")
+    return math.sqrt(n)
+
+
+def porcentaje(porc, cantidad):
+    return cantidad * porc / 100
+
+
+def valor_absoluto(n):
+    return abs(n)
