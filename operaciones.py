@@ -17,3 +17,15 @@ def dividir(a, b):
     if b == 0:
         raise ValueError("No se puede dividir entre cero.")
     return a / b
+
+ 
+def potencia(base, exponente):
+    if base == 0 and exponente < 0:
+        raise ValueError("0 elevado a un exponente negativo no está definido.")
+    return base ** exponente
+
+
+def modulo(a, b):
+    if b == 0:
+        raise ValueError("El divisor del módulo no puede ser cero.")
+    return a % b   
